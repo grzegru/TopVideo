@@ -3,6 +3,7 @@ package com.example.topvideo.domain.api;
 import com.example.topvideo.domain.discovery.Discovery;
 import com.example.topvideo.domain.discovery.DiscoveryDao;
 import com.example.topvideo.domain.user.UserDao;
+import com.example.topvideo.domain.vote.VoteDao;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,13 +31,15 @@ public class DiscoveryService {
 
     private static class DiscoveryMapper{
         private final UserDao userDao = new UserDao();
+        private final VoteDao voteDao = new VoteDao();
          DiscoveryBasicInfo map(Discovery discovery){
             return new DiscoveryBasicInfo(
                     discovery.getId(),
                     discovery.getTitle(),
                     discovery.getUrl(),
                     discovery.getDescription(),
-                    discovery.getDateAdded()
+                    discovery.getDateAdded(),
+                    voteDao.countByDiscoveryId(discovery.getId())
             );
         }
 
