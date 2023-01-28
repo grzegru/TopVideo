@@ -32,6 +32,7 @@ public class DiscoveryService {
         private final UserDao userDao = new UserDao();
          DiscoveryBasicInfo map(Discovery discovery){
             return new DiscoveryBasicInfo(
+                    discovery.getId(),
                     discovery.getTitle(),
                     discovery.getUrl(),
                     discovery.getDescription(),
