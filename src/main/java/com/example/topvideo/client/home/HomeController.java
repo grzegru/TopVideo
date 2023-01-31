@@ -4,6 +4,7 @@ import com.example.topvideo.domain.api.CategoryName;
 import com.example.topvideo.domain.api.CategoryService;
 import com.example.topvideo.domain.api.DiscoveryBasicInfo;
 import com.example.topvideo.domain.api.DiscoveryService;
+import com.example.topvideo.domain.discovery.DiscoveryVoteComparator;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -18,6 +19,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<DiscoveryBasicInfo> discoveries = discoveryService.findAll();
+        discoveries.sort(new DiscoveryVoteComparator());
         List<CategoryName> categories = categoryService.findAllCategoryNames();
         request.setAttribute("discoveries", discoveries);
         request.setAttribute("categories", categories);

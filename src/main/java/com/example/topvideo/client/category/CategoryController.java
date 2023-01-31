@@ -4,6 +4,7 @@ import com.example.topvideo.domain.api.CategoryFullInfo;
 import com.example.topvideo.domain.api.CategoryService;
 import com.example.topvideo.domain.api.DiscoveryBasicInfo;
 import com.example.topvideo.domain.api.DiscoveryService;
+import com.example.topvideo.domain.discovery.DiscoveryVoteComparator;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -23,6 +24,7 @@ public class CategoryController extends HttpServlet {
                  .orElseThrow();
          request.setAttribute("category",category);
         List<DiscoveryBasicInfo> discoveries = discoveryService.findByCategory(id);
+        discoveries.sort(new DiscoveryVoteComparator());
         request.setAttribute("discoveries",discoveries);
         request.getRequestDispatcher("/WEB-INF/views/category.jsp").forward(request,response);
     }

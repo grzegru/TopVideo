@@ -1,6 +1,10 @@
 body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    background: rgb(28,0,36);
+    background: linear-gradient(71deg, rgba(28,0,36,0.5130427170868348) 56%, rgba(177,10,198,0.5494572829131652) 74%,
+    rgba(0,99,255,1) 100%);
+    background-attachment: fixed;
 }
 
 /* max szerokość kolumny 1200px i wyśrodkowanie */
@@ -22,6 +26,14 @@ a {
     padding: 16px 0;
 }
 
+/* przycisk logowania oraz ikonka użytkownika po prawej stronie*/
+#right-nav{
+    float: right;
+    align-items: center;
+    padding: 16px 0;
+}
+
+
 /* kolorowe logo */
 .logo {
 
@@ -29,21 +41,44 @@ a {
     font-weight: 400;
 }
 
-/* efekt przycisku logowania */
 .login-button {
-    background-color: #007AFF;
-    color: white;
-    font-size: 0.8em;
+    scale: 0.8;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    padding: 3px 16px;
-    line-height: 24px;
-    font-weight: 400;
-    letter-spacing: .1em;
+    color: #4e0c57;
+    transition: all 1000ms;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #4e0c57;
 }
 
-/* po najechaniu na przycisk lekka przezroczystość */
 .login-button:hover {
-    opacity: 80%;
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #871196;
+    box-shadow: 4px 5px 17px -4px #4e0c57;
+}
+
+.login-button::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #4e0c57;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.login-button:hover::before {
+    width: 250%;
 }
 
 /* usuwamy domyślne style przeglądarki i dodajemy flexboxa,
@@ -85,7 +120,6 @@ kafelki mają zajmować tyle samo miejsca */
 }
 
 
-
 /* ramka i odstępy */
 .discovery {
     border: 1px solid #BDBDBD;
@@ -99,7 +133,7 @@ kafelki mają zajmować tyle samo miejsca */
 }
 /* zmiana czcionki "Dodane przez..." */
 .discovery-details {
-    color: #757575;
+    color: #ffffff;
     font-size: 0.8rem;
 }
 
@@ -121,7 +155,7 @@ kafelki mają zajmować tyle samo miejsca */
 /* zmieniamy paragraf na element liniowy */
 .discovery-votes {
     display: inline;
-    color: #007AFF;
+    color: #ffffff;
 }
 
 /* nadpisanie domyślnych marginesów */
@@ -138,7 +172,22 @@ kafelki mają zajmować tyle samo miejsca */
     color: #FF3B30;
 }
 
+
 footer {
     margin-top: 20px;
     text-align: center;
+}
+
+.discovery-add-button {
+    position:fixed;
+    width:50px;
+    height:50px;
+    bottom:40px;
+    right:40px;
+    background-color:#4CD964;
+    color:#4e0c57;
+    box-shadow: 2px 2px 3px #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
