@@ -57,6 +57,30 @@ public class DiscoveryDao extends BaseDao {
         }
     }
 
+    public List<Discovery> findByUserId(int userId){
+        final String query = """
+                SELECT
+                    id, title, url, description, date_added, category_id, user_id
+                FROM
+                    discovery
+                WHERE
+                    user_id = ?
+                """;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            List<Discovery> discoveries = new ArrayList<>();
+            while (resultSet.next()) {
+                Discovery discovery = mapRow(resultSet);
+                discoveries.add(discovery);
+            }
+            return discoveries;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void save(Discovery discovery) {
         final String query = """
                         INSERT INTO

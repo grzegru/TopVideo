@@ -29,6 +29,12 @@ public class DiscoveryService {
                 .collect(Collectors.toList());
     }
 
+    public List<DiscoveryBasicInfo> findByUserId(int userId){
+        return discoveryDao.findByUserId(userId)
+                .stream().map(discoveryMapper::map)
+                .collect(Collectors.toList());
+    }
+
     private static class DiscoveryMapper{
         private final UserDao userDao = new UserDao();
         private final VoteDao voteDao = new VoteDao();

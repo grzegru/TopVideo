@@ -14,7 +14,7 @@
 
 
     <main>
-        <h1>${requestScope.category.name}</h1>
+        <h1 class="purples">${requestScope.category.name}</h1>
         <p>${requestScope.category.description}</p>
         <%@include file="../segments/discovery-list.jspf"%>
 

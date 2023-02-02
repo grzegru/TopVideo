@@ -95,6 +95,29 @@ public class UserDao extends BaseDao {
         }
     }
 
+
+    public int countDiscoveryByUserId(User user){
+        final String query = """
+                SELECT
+                    count(*)
+                FROM
+                    discovery
+                WHERE
+                    user_id = ?
+                """;
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(query)){
+            statement.setInt(1,user.getId());
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+            return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private User mapRow(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String username = resultSet.getString("username");

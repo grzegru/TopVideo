@@ -9,7 +9,7 @@
     <div class="container">
         <%@include file="../segments/header.jspf"%>
 
-        <form action="#" method="post" class="discovery-form">
+        <form action=""${pageContext.request.contextPath}/discovery/add"" method="post" class="discovery-form">
             <h2 class="discovery-form-title">Dodaj nowy filmik</h2>
             <input name="title" placeholder="Tytuł" required>
             <input name="url" placeholder="URL" type="url" required>

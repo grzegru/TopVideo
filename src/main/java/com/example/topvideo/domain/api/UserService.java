@@ -16,13 +16,27 @@ public class UserService {
         userDao.save(userToSave);
     }
 
+    public User getUser(String username){
+        return userDao.findByUsername(username).orElseThrow();
+    }
+
+    public UserProfile getUserData(User user){
+        return new UserProfile(
+                user.getUsername(),
+                user.getEmail(),
+                user.getRegistrationDate(),
+                userDao.countDiscoveryByUserId(user)
+        );
+    }
+
+
     private void hashPasswordWithSha256(User user) {
         String sha256Password = DigestUtils.sha256Hex(user.getPassword());
         user.setPassword(sha256Password);
     }
 
     private static class UserMapper{
-        static User map(UserRegistration userRegistration){
+         static User map(UserRegistration userRegistration){
             return new User(
                     userRegistration.getUsername(),
                     userRegistration.getEmail(),

@@ -26,13 +26,12 @@ a {
     padding: 16px 0;
 }
 
-/* przycisk logowania oraz ikonka użytkownika po prawej stronie*/
-#right-nav{
-    float: right;
+
+#left-nav{
+    float: left;
     align-items: center;
     padding: 16px 0;
 }
-
 
 /* kolorowe logo */
 .logo {
@@ -190,4 +189,26 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/*nazwa strony*/
+@font-face {
+    font-family: 'Rocher';
+    src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
+}
+
+h1 {
+    font-family: 'Rocher';
+    font-size: 35px;
+    margin: 0;
+}
+
+@font-palette-values --Purples {
+    font-family: Rocher;
+    base-palette: 6;
+}
+
+.purples {
+    font-palette: --Purples;
 }

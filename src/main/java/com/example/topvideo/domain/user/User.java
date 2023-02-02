@@ -9,6 +9,7 @@ public class User {
     private String password;
     private LocalDateTime registrationDate;
 
+
     public User(Integer id, String username, String email, String password, LocalDateTime registrationDate) {
         this.id = id;
         this.username = username;
